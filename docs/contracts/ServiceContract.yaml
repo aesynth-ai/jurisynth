@@ -1,0 +1,6 @@
+﻿endpoints:
+  - id: assess-compliance
+    in:  { artifact_hash, jurisdiction, policy_ids: [] }
+    out: { score, cited_sources: [], rationale }
+events:
+  - topic: jurisynth.advisory.issued

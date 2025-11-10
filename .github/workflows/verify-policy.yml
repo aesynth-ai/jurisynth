@@ -1,0 +1,21 @@
+﻿name: verify-policy
+on:
+  pull_request:
+    paths:
+      - '.aesynth/policy_ref.yaml'
+      - 'docs/**'
+      - 'schemas/**'
+      - '.github/workflows/verify-policy.yml'
+  push:
+    branches: [ main ]
+jobs:
+  schema-and-hash:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check policy_ref present
+        run: test -f .aesynth/policy_ref.yaml
+  reflection:
+    uses: aesynth-ai/governance-registry/.github/workflows/_reusable-reflection.yml@main
+    with:
+      min_hours: 12
